@@ -278,4 +278,7 @@ a:hover {
     .topbar .item:not(.const, [active]) {
         display: none;
     }
+    table, th, td {
+        padding: .75rem;
+    }
 }
