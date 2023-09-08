@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="topbar">
+            <div class="item const" data-open="tarih">Menü <i class="fa fa-home"></i></div>
+            <div class="item" data-open="hava-durumu">Hava Durumu <i class="fa fa-cloud"></i></div>
+            <div class="item" data-open="sozluk">Sözlük <i class="fa fa-book"></i></div>
+            <div class="item" data-open="hesap-makinesi">Hesap Makinesi <i class="fa fa-calculator"></i></div>
+            <div class="item hidden" data-open="namaz-vakti">Namaz Vakti <i class="fa fa-mosque"></i></div>
+            <div class="mobile const">Daha Fazla <i class="fa fa-caret-down"></i></div>
+        </div>
+        <h1 id="menu">Merhaba!</h1>
+        <div class="container">
+            <div class="tarih" data-box data-active></div>
+            <div class="hava-durumu" data-box>
+                <h2>Hava Durumu</h2>
+                <div class="error">
+                    <p>Hava durumuna erişebilmek için konum izni vermelisiniz.</p>
+                    <button id="retry">İzin Ver</button>
+                </div>
+                <table id="hava">
+                    <tr>
+                        <th>--</th>
+                        <th>--</th>
+                        <th data-active>--</th>
+                        <th>--</th>
+                        <th>--</th>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td data-active>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                </table>
+                <span class="info">
+                    <details>
+                        <summary>Ek Bilgi</summary>
+                        Kullanılan API: <a href="https://open-meteo.com">open-meteo.com</a>
+                    </details>
+                </span>
+            </div>
+            <div class="sozluk" data-box>
+                <h2>Sözlük</h2>
+                <input type="text" placeholder="Kelime girin..." /><br />
+                <button id="ara">Tamam!</button>
+                <button id="sifirla">Sıfırla</button>
+                <div class="sonuclar"></div>
+                <div class="error"></div>
+                <span class="info">
+                    <details>
+                        <summary>Ek Bilgi</summary>
+                        Kullanılan API: <a href="https://sozluk.gov.tr">sozluk.gov.tr</a>
+                    </details>
+                </span>
+            </div>
+            <div class="hesap-makinesi" data-box>
+                <div id="hesap">
+                    <div class="cikti">0</div>
+                    <div class="butonlar">
+                        <button id="clear" data-custom>C</button>
+                        <button id="back" data-custom>←</button><hr />
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>+</button>
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                        <button>-</button>
+                        <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
+                        <button>×</button>
+                        <button>,</button>
+                        <button>0</button>
+                        <button id="exec" data-custom>=</button>
+                        <button>÷</button>
+                    </div>
+                </div>
+            </div>
+            <div class="namaz-vakti" data-box>
+                <h2 id="section-title"></h2>
+                <table id="vakitler">
+                    <tr>
+                        <th>İmsak</th>
+                        <th>Güneş</th>
+                        <th>Öğle</th>
+                        <th>İkindi</th>
+                        <th>Akşam</th>
+                        <th>Yatsı</th>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                </table>
+                <span class="info">
+                    <details>
+                        <summary>Ek Bilgi</summary>
+                        Kullanılan API: <a href="https://namaz-vakti.vercel.app">namaz-vakti.vercel.app</a>
+                    </details>
+                </span>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/d5360bfebf.js" crossorigin="anonymous"></script>

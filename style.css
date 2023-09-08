@@ -1,0 +1,281 @@
+:root {
+    --bg: rgb(50, 50, 50);
+    --text: white;
+}
+
+body {
+    color: var(--text);
+    background: var(--bg);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+h1 {
+    display: none;
+    margin-top: 2rem;
+    font-size: 40px;
+}
+
+.tarih {
+    font-size: 25px;
+}
+
+button {
+    color: white;
+    background: deepskyblue;
+    border: none;
+    border-radius: 5px;
+    padding: .5rem;
+    transition: .2s;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: dodgerblue;
+}
+
+.container {
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.hava-durumu.okay .error {
+    display: none;
+}
+
+table {
+    border: 2px solid white;
+}
+
+.hava-durumu:not(.okay) table {
+    display: none;
+}
+
+table, th, td {
+    border: 2px solid white;
+    border-collapse: collapse;
+    padding: 1rem;
+}
+
+th[data-active], td[data-active] {
+    background: gray;
+}
+
+input {
+    height: 2rem;
+    width: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 5px 5px 0 lightgray;
+}
+
+input:focus {
+    outline: 0;
+}
+
+hr {
+    width: 100%;
+}
+
+.sozluk .sonuclar, .sozluk .error {
+    margin-top: 2rem;
+}
+
+.sozluk .error {
+    display: none;
+    color: red;
+    font-weight: bold;
+}
+
+.topbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 1rem;
+    transition: .5s;
+}
+
+.topbar .item, .topbar .mobile {
+    padding: .5rem;
+    font-size: 1.25rem;
+    background: dodgerblue;
+    border-radius: 5px;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.topbar .item:hover, .topbar .mobile:hover {
+    background: deepskyblue;
+}
+
+.topbar:hover {
+    opacity: 1;
+}
+
+h1#menu {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+[data-box][data-active] {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+[data-box]:not([data-active]) {
+    display: none;
+}
+
+body:has(.container .tarih[data-active]) h1#menu {
+    display: block;
+}
+
+button#sifirla {
+    background: crimson;
+    margin-left: .3rem;
+}
+
+button#sifirla:hover {
+    background: red;
+}
+
+#hesap {
+    height: auto;
+    width: 18.75rem;
+    background: lightgray;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 7.5%;
+}
+
+#hesap .cikti {
+    height: 5rem;
+    width: 94%;
+    background: #000;
+    border-radius: 5px;
+    color: lime;
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#hesap .butonlar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    row-gap: .05rem;
+}
+
+#hesap .butonlar button {
+    height: 3.5rem;
+    width: 3.5rem;
+    background: white;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.25rem;
+}
+
+#hesap .butonlar hr {
+    flex-basis: 100%;
+    height: 0;
+    margin: 0;
+    border: 0;
+}
+
+.item i.fa, .mobile i.fa {
+    margin-left: .3rem;
+}
+
+.item[active] i.fa, .mobile[active] i.fa {
+    margin-left: .75rem;
+}
+
+.topbar .item[active]:not(.const) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+    z-index: 1000;
+}
+
+.topbar .item[active][data-active]:not(.const) {
+    background: skyblue;
+}
+
+.topbar .item[active][data-open=hava-durumu]:not(.const) {
+    top: 10vh;
+}
+
+.topbar .item[active][data-open=sozluk]:not(.const) {
+    top: 27vh;
+}
+
+.topbar .item[active][data-open=hesap-makinesi]:not(.const) {
+    top: 44vh;
+}
+.topbar .item[active][data-open=namaz-vakti]:not(.const) {
+    top: 61vh;
+}
+
+.topbar .item.hidden:not([active]) {
+    display: none;
+}
+
+span.info {
+    position: absolute;
+    bottom: -5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: gray;
+    width: 100%;
+}
+
+a {
+    color: dodgerblue;
+    text-decoration: underline;
+    transition: .2s;
+}
+
+a:hover {
+    text-decoration: underline;
+    letter-spacing: .03rem;
+}
+
+@media screen and (max-width: 800px) {
+    .topbar .item:not(.const, [active]) {
+        display: none;
+    }
+}
