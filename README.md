@@ -1,2 +1,2 @@
 # yeksahife
-Hesap Makinesi, Hava Durumu, Tarih-Saat, Namaz Vakitleri ve daha fazlası tek sayfada...
+Hesap Makinesi, Hava Durumu, Tarih-Saat, Namaz Vakitleri... Hepsi tek sayfada.
