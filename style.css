@@ -17,8 +17,9 @@ h1 {
     font-size: 40px;
 }
 
-.tarih {
+.tarih[data-box][data-active] {
     font-size: 25px;
+    top: 70%;
 }
 
 button {
