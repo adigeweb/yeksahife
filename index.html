@@ -16,6 +16,7 @@
             <div class="item" data-open="sozluk">Sözlük <i class="fa fa-book"></i></div>
             <div class="item" data-open="hesap-makinesi">Hesap Makinesi <i class="fa fa-calculator"></i></div>
             <div class="item hidden" data-open="namaz-vakti">Namaz Vakti <i class="fa fa-mosque"></i></div>
+            <div class="item hidden" data-open="birim-cevir">Birim Dönüştürücü <i class="fa fa-equals"></i></div>
             <div class="mobile const">Daha Fazla <i class="fa fa-caret-down"></i></div>
         </div>
         <h1 id="menu">
@@ -120,6 +121,22 @@
                         Kullanılan API: <a href="https://namaz-vakti.vercel.app">namaz-vakti.vercel.app</a>
                     </details>
                 </span>
+            </div>
+            <div class="birim-cevir" data-box>
+                <select id="tur">
+                    <option value="uzun">Uzunluk</option>
+                    <option value="sicak">Sıcaklık</option>
+                    <option value="agir">Ağırlık</option>
+                </select>
+                <select class="uzun">
+                    <option value="metre"></option>
+                    <option value="santimetre"></option>
+                    <option value="kilometre"></option>
+                    <option value="fit"></option>
+                    <option value="inc"></option>
+                    <option value="yarda"></option>
+                    <option value="angstrom"></option>
+                </select>
             </div>
         </div>
     </body>

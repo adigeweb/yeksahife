@@ -23,6 +23,27 @@ const days = [
     "Pazar"
 ];
 
+const birimler = {
+    uzun: {
+        metre: 1,
+        santimetre: 0.01,
+        kilometre: 1000,
+        yarda: 1.0936133,
+        fit: 3.2808399,
+        inc: 39.3700787,
+        angstrom: 10000000000
+    },
+    sicak: {
+        santigrat: 1,
+        fahrenayt: 33.8,
+        kelvin: 274.15,
+        reaumur: 1.25
+    },
+    agir: {
+        
+    }
+}
+
 window.addEventListener("load", () => {
     const getDate = () => {
         let date = new Date();

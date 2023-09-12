@@ -215,6 +215,23 @@ button#sifirla:hover {
     margin-left: .3rem;
 }
 
+select {
+    height: 2.5rem;
+    font-size: 1rem;
+    width: auto;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    color: white;
+    background: dodgerblue;
+    border: none;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+select:hover {
+    background: deepskyblue;
+}
+
 .item[active] i.fa, .mobile[active] i.fa {
     margin-left: .75rem;
 }
@@ -247,8 +264,13 @@ button#sifirla:hover {
 .topbar .item[active][data-open=hesap-makinesi]:not(.const) {
     top: 44vh;
 }
+
 .topbar .item[active][data-open=namaz-vakti]:not(.const) {
     top: 61vh;
+}
+
+.topbar .item[active][data-open=birim-cevir]:not(.const) {
+    top: 78vh;
 }
 
 .topbar .item.hidden:not([active]) {
