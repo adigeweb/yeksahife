@@ -297,6 +297,18 @@ a:hover {
     letter-spacing: .03rem;
 }
 
+.birim-cevir {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.esitlik {
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
 @media screen and (max-width: 800px) {
     .topbar .item:not(.const, [active]) {
         display: none;

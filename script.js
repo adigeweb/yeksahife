@@ -64,7 +64,7 @@ const birimler = {
         gun: 86400,
         hafta: 604800,
         ay: 2629743.83,
-
+        yil: 31556926
     }
 }
 
@@ -185,4 +185,5 @@ window.addEventListener("load", () => {
             else item.setAttribute("active", true);
         });
     });
+    document.querySelector(".max-num-warning").setHTML(Number.MAX_VALUE);
 });
