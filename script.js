@@ -40,7 +40,31 @@ const birimler = {
         reaumur: 1.25
     },
     agir: {
-        
+        kilogram: 1000,
+        gram: 1,
+        ton: 1000000,
+        libre: 0.45359237
+    },
+    sure: {
+        saniye: 1,
+        planck_zamani: 5.39 * 10 ^ -44,
+        jiffy: 3 * 10 ^ -24,
+        svedberg: 10 ^ -13,
+        pikosaniye: 10 ^ -12,
+        nanosaniye: 10 ^ -9,
+        mikrosaniye: 10 ^ -6,
+        milisaniye: 10 ^ -3,
+        sentisaniye: 10 ^ -2,
+        desisaniye: 10 ^ -1,
+        saniye: 1,
+        dekasaniye: 10,
+        dakika: 60,
+        hektosaniye: 100,
+        saat: 3600,
+        gun: 86400,
+        hafta: 604800,
+        ay: 2629743.83,
+
     }
 }
 
@@ -52,9 +76,10 @@ window.addEventListener("load", () => {
     }
     const getTemparature = (pos) => {
         document.querySelector(".hava-durumu").classList.add("okay");
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&hourly=temperature_2m`)
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&hourly=temperature_2m&timezone=auto`)
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 document.querySelectorAll("table#hava tr")[0].querySelectorAll("th").forEach((item, index) => {
                     let hrs = new Date().getHours() + (index - 2);
                     item.setHTML(`${hrs}:00`);
