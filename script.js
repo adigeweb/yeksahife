@@ -28,14 +28,14 @@ const birimler = {
         metre: 1,
         santimetre: 0.01,
         kilometre: 1000,
-        yarda: 1.0936133,
-        fit: 3.2808399,
-        inc: 39.3700787,
+        yarda: .9144,
+        fit: .3048,
+        inc: .0254,
         angstrom: 10000000000
     },
     sicak: {
         santigrat: 1,
-        fahrenayt: 33.8,
+        fahrenayt: 9 / 5,
         kelvin: 274.15,
         reaumur: 1.25
     },
@@ -186,4 +186,15 @@ window.addEventListener("load", () => {
         });
     });
     document.querySelector(".max-num-warning").setHTML(Number.MAX_VALUE);
+    document.querySelector("select#tur").addEventListener("change", () => {
+        document.querySelectorAll(".esitlik select").forEach(item => item.style.display = "none");
+        document.querySelectorAll(`.esitlik select.${document.querySelector("select#tur").value}`).forEach(item => item.style.display = "block");
+    });
+    document.querySelector("button#hesapla").addEventListener("click", () => {
+        console.log(birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value]);
+        console.log([document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value]);
+        document.querySelector(".ceviri-sonuc").setHTML(`
+        ${document.querySelector("input#ilkSayi").value.replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].selectedIndex].innerText} = ${Number((document.querySelector("input#ilkSayi").value * (birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].value] / birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value])).toFixed(3)).toString().replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].selectedIndex].innerText}
+        `);
+    });
 });

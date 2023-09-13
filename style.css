@@ -24,7 +24,7 @@ h1 {
 
 button {
     color: white;
-    background: deepskyblue;
+    background: dodgerblue;
     border: none;
     border-radius: 5px;
     padding: .5rem;
@@ -34,7 +34,7 @@ button {
 }
 
 button:hover {
-    background: dodgerblue;
+    background: deepskyblue;
 }
 
 .container {
@@ -216,8 +216,7 @@ button#sifirla:hover {
 }
 
 select {
-    height: 2.5rem;
-    font-size: 1rem;
+    height: 2rem;
     width: auto;
     padding-left: .5rem;
     padding-right: .5rem;
@@ -300,6 +299,7 @@ a:hover {
 .birim-cevir {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
 }
 
@@ -307,6 +307,28 @@ a:hover {
     display: flex;
     gap: 0;
     align-items: center;
+    justify-content: center;
+}
+
+.esitlik select {
+    margin: 1rem;
+}
+
+.esitlik input[type=number] {
+    width: 2rem;
+}
+
+.esitlik select:not(.uzun) {
+    display: none;
+}
+
+.birim-cevir button#hesapla {
+    width: 5rem;
+}
+
+.ceviri-sonuc {
+    font-size: 1.25rem;
+    margin-top: 1rem;
 }
 
 @media screen and (max-width: 800px) {
