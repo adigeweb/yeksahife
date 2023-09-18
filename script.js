@@ -33,12 +33,12 @@ const birimler = {
         inc: .0254,
         angstrom: 10000000000
     },
-    sicak: {
+    /* sicak: {
         santigrat: 1,
         fahrenayt: 9 / 5,
         kelvin: 274.15,
         reaumur: 1.25
-    },
+    }, */
     agir: {
         kilogram: 1000,
         gram: 1,
@@ -46,7 +46,6 @@ const birimler = {
         libre: 0.45359237
     },
     sure: {
-        saniye: 1,
         planck_zamani: 5.39 * 10 ^ -44,
         jiffy: 3 * 10 ^ -24,
         svedberg: 10 ^ -13,
@@ -66,6 +65,16 @@ const birimler = {
         ay: 2629743.83,
         yil: 31556926
     }
+}
+
+
+const capitalizeFLetter = (str) => {
+    return str[0].toUpperCase() + str.slice(1);
+}
+
+var theme = {
+    text: "white",
+    bg: "rgb(50, 50, 50)"
 }
 
 window.addEventListener("load", () => {
@@ -120,6 +129,14 @@ window.addEventListener("load", () => {
                     item.setHTML(data["times"][date][index]);
                 });
             });
+    }
+    const getTranslation = (from, to, text) => {
+        fetch(`https://api.mymemory.translated.net/get?q=${text}&langpair=${from}|${to}`)
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector(".cevir .cevrilmis").setHTML(data.responseData.translatedText);
+            })
+            .catch(err => console.error(err));
     }
     document.querySelector("button#retry").addEventListener("click", () => {
         navigator.geolocation.getCurrentPosition(getTemparature);
@@ -185,16 +202,35 @@ window.addEventListener("load", () => {
             else item.setAttribute("active", true);
         });
     });
-    document.querySelector(".max-num-warning").setHTML(Number.MAX_VALUE);
     document.querySelector("select#tur").addEventListener("change", () => {
         document.querySelectorAll(".esitlik select").forEach(item => item.style.display = "none");
         document.querySelectorAll(`.esitlik select.${document.querySelector("select#tur").value}`).forEach(item => item.style.display = "block");
     });
     document.querySelector("button#hesapla").addEventListener("click", () => {
-        console.log(birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value]);
-        console.log([document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value]);
         document.querySelector(".ceviri-sonuc").setHTML(`
         ${document.querySelector("input#ilkSayi").value.replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].selectedIndex].innerText} = ${Number((document.querySelector("input#ilkSayi").value * (birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].value] / birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value])).toFixed(3)).toString().replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].selectedIndex].innerText}
         `);
     });
+    document.querySelector(".cevir button#cevir").addEventListener("click", () => {
+        if (document.querySelector("input#cevrilecek").value.length > 70) {
+            document.querySelector(".cevir .cevrilmis").setHTML("Maalesef 70 karakterden uzun metinler çevrilemez!");
+            return;
+        }
+        getTranslation(
+            document.querySelector("select#ilkDil").value,
+            document.querySelector("select#sonDil").value,
+            capitalizeFLetter(document.querySelector("input#cevrilecek").value)
+        );
+    });
+    document.querySelector(".theme-switch").addEventListener("click", () => {
+        document.querySelector(":root").style.setProperty("--text", theme["text"] == "white" ? "rgb(50, 50, 50)" : "white");
+        if (theme["text"] == "white") theme["text"] = "rgb(50, 50, 50)"
+        else theme["text"] = "white";
+        document.querySelector(":root").style.setProperty("--bg", theme["bg"] == "white" ? "rgb(50, 50, 50)" : "white");
+        if (theme["bg"] == "white") theme["bg"] = "rgb(50, 50, 50)"
+        else theme["bg"] = "white";
+        localStorage.setItem("theme", theme["bg"]);
+    });
+    document.querySelector(":root").style.setProperty("--text", localStorage.getItem("theme") == "white" ? "rgb(50, 50, 50)" : "white");
+    document.querySelector(":root").style.setProperty("--bg", localStorage.getItem("theme"));
 });

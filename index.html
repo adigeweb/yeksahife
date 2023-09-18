@@ -17,7 +17,9 @@
             <div class="item" data-open="hesap-makinesi">Hesap Makinesi <i class="fa fa-calculator"></i></div>
             <div class="item hidden" data-open="namaz-vakti">Namaz Vakti <i class="fa fa-mosque"></i></div>
             <div class="item hidden" data-open="birim-cevir">Birim Dönüştürücü <i class="fa fa-equals"></i></div>
+            <div class="item hidden" data-open="cevir" right>Çevir <i class="fa fa-language"></i></div>
             <div class="mobile const">Daha Fazla <i class="fa fa-caret-down"></i></div>
+            <div class="theme-switch"><i class="fa fa-sun"></i></div>
         </div>
         <h1 id="menu">
             <div class="logo">
@@ -156,16 +158,16 @@
                     </select>
                     <select class="sure">
                         <option value="saniye">Saniye</option>
-                        <option class="dakika">Dakika</option>
-                        <option class="saat">Saat</option>
-                        <option class="gun">Gün</option>
-                        <option class="hafta">Hafta</option>
-                        <option class="ay">Ay</option>
-                        <option class="yil">Yıl</option>
+                        <option value="dakika">Dakika</option>
+                        <option value="saat">Saat</option>
+                        <option value="gun">Gün</option>
+                        <option value="hafta">Hafta</option>
+                        <option value="ay">Ay</option>
+                        <option value="yil">Yıl</option>
                         <option value="planck_zamani">Planck Zamanı</option>
-                        <option class="jiffy">Jiffy</option>
-                        <option class="svedberg">Svedberg</option>
-                        <option class="pikosaniye">Pikosaniye</option>
+                        <option value="jiffy">Jiffy</option>
+                        <option value="svedberg">Svedberg</option>
+                        <option value="pikosaniye">Pikosaniye</option>
                     </select>
                     <span>&nbsp;kaç&nbsp;</span>
                     <select class="uzun">
@@ -191,20 +193,48 @@
                     </select>
                     <select class="sure">
                         <option value="saniye">Saniye</option>
-                        <option class="dakika">Dakika</option>
-                        <option class="saat">Saat</option>
-                        <option class="gun">Gün</option>
-                        <option class="hafta">Hafta</option>
-                        <option class="ay">Ay</option>
-                        <option class="yil">Yıl</option>
+                        <option value="dakika">Dakika</option>
+                        <option value="saat">Saat</option>
+                        <option value="gun">Gün</option>
+                        <option value="hafta">Hafta</option>
+                        <option value="ay">Ay</option>
+                        <option value="yil">Yıl</option>
                         <option value="planck_zamani">Planck Zamanı</option>
-                        <option class="jiffy">Jiffy</option>
-                        <option class="svedberg">Svedberg</option>
-                        <option class="pikosaniye">Pikosaniye</option>
+                        <option value="jiffy">Jiffy</option>
+                        <option value="svedberg">Svedberg</option>
+                        <option value="pikosaniye">Pikosaniye</option>
                     </select>
                 </div>
                 <button id="hesapla">Hesapla</button>
                 <div class="ceviri-sonuc"></div>
+            </div>
+            <div class="cevir" data-box>
+                <select id="ilkDil">
+                    <option value="tr">Türkçe</option>
+                    <option value="en">İngilizce</option>
+                    <option value="it">İtalyanca</option>
+                    <option value="de">Almanca</option>
+                    <option value="es">İspanyolca</option>
+                    <option value="ar">Arapça</option>
+                </select>
+                <select id="sonDil">
+                    <option value="tr">Türkçe</option>
+                    <option value="en" selected>İngilizce</option>
+                    <option value="it">İtalyanca</option>
+                    <option value="de">Almanca</option>
+                    <option value="es">İspanyolca</option>
+                    <option value="ar">Arapça</option>
+                </select><br /><br />
+                <input type="text" id="cevrilecek" /><br />
+                <button id="cevir">Çevir</button>
+                <div class="cevrilmis"></div>
+                <span class="info">
+                    <details>
+                        <summary>Ek Bilgi</summary>
+                        Kullanılan API: <a href="https://mymemory.translated.net">mymemory.translated.net</a> <br />
+                        Çevirilerin alındığı kaynak, anonim kişilerin katkılarına açık olmasından dolayı hatalar olabilir. Bunun sorumlusu "Yeksahife" değildir.
+                    </details>
+                </span>
             </div>
         </div>
     </body>

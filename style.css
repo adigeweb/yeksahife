@@ -51,7 +51,7 @@ button:hover {
 }
 
 table {
-    border: 2px solid white;
+    border: 2px solid var(--text);
 }
 
 .hava-durumu:not(.okay) table {
@@ -59,7 +59,7 @@ table {
 }
 
 table, th, td {
-    border: 2px solid white;
+    border: 2px solid var(--text);
     border-collapse: collapse;
     padding: 1rem;
 }
@@ -236,15 +236,15 @@ select:hover {
 }
 
 .topbar .item[active]:not(.const) {
-    position: fixed;
-    left: 0;
-    right: 0;
+    position: absolute;
     font-size: 2rem;
     display: flex;
+    left: 0;
+    right: 0;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 15vh;
+    height: 12vh;
     z-index: 1000;
 }
 
@@ -257,19 +257,23 @@ select:hover {
 }
 
 .topbar .item[active][data-open=sozluk]:not(.const) {
-    top: 27vh;
+    top: 23vh;
 }
 
 .topbar .item[active][data-open=hesap-makinesi]:not(.const) {
-    top: 44vh;
+    top: 36vh;
 }
 
 .topbar .item[active][data-open=namaz-vakti]:not(.const) {
-    top: 61vh;
+    top: 49vh;
 }
 
 .topbar .item[active][data-open=birim-cevir]:not(.const) {
-    top: 78vh;
+    top: 62vh;
+}
+
+.topbar .item[active][data-open=cevir]:not(.const) {
+    top: 75vh;
 }
 
 .topbar .item.hidden:not([active]) {
@@ -331,7 +335,21 @@ a:hover {
     margin-top: 1rem;
 }
 
-@media screen and (max-width: 800px) {
+.cevrilmis {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.theme-switch {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+}
+
+@media screen and (max-width: 1000px) {
     .topbar .item:not(.const, [active]) {
         display: none;
     }
