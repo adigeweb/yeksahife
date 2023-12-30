@@ -30,8 +30,7 @@ const birimler = {
         kilometre: 1000,
         yarda: .9144,
         fit: .3048,
-        inc: .0254,
-        angstrom: 10000000000
+        inc: .0254
     },
     /* sicak: {
         santigrat: 1,
@@ -43,22 +42,11 @@ const birimler = {
         kilogram: 1000,
         gram: 1,
         ton: 1000000,
-        libre: 0.45359237
+        libre: 453.59237
     },
     sure: {
-        planck_zamani: 5.39 * 10 ^ -44,
-        jiffy: 3 * 10 ^ -24,
-        svedberg: 10 ^ -13,
-        pikosaniye: 10 ^ -12,
-        nanosaniye: 10 ^ -9,
-        mikrosaniye: 10 ^ -6,
-        milisaniye: 10 ^ -3,
-        sentisaniye: 10 ^ -2,
-        desisaniye: 10 ^ -1,
         saniye: 1,
-        dekasaniye: 10,
         dakika: 60,
-        hektosaniye: 100,
         saat: 3600,
         gun: 86400,
         hafta: 604800,
@@ -80,7 +68,7 @@ var theme = {
 window.addEventListener("load", () => {
     const getDate = () => {
         let date = new Date();
-        let proper = `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()} ${days[date.getUTCDay()]}, ${date.getHours()}.${date.getUTCMinutes().toString().padStart(2, "0")}`;
+        let proper = `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()} ${days[date.getUTCDay() - 1]}, ${date.getHours()}.${date.getUTCMinutes().toString().padStart(2, "0")}`;
         document.querySelector(".tarih").innerHTML = proper;
     }
     const getTemparature = (pos) => {
@@ -254,9 +242,11 @@ window.addEventListener("load", () => {
         document.querySelectorAll(`.esitlik select.${document.querySelector("select#tur").value}`).forEach(item => item.style.display = "block");
     });
     document.querySelector("button#hesapla").addEventListener("click", () => {
-        document.querySelector(".ceviri-sonuc").innerHTML = (`
+        document.querySelector(".ceviri-sonuc").innerHTML = !(`
         ${document.querySelector("input#ilkSayi").value.replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].selectedIndex].innerText} = ${Number((document.querySelector("input#ilkSayi").value * (birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].value] / birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value])).toFixed(3)).toString().replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].selectedIndex].innerText}
-        `);
+        `).startsWith("-") ? (`
+        ${document.querySelector("input#ilkSayi").value.replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].selectedIndex].innerText} = ${Number((document.querySelector("input#ilkSayi").value * (birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].value] / birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value])).toFixed(3)).toString().replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].selectedIndex].innerText}
+        `) : `0 ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].selectedIndex].innerText}`;
     });
     document.querySelector(".cevir button#cevir").addEventListener("click", () => {
         if (document.querySelector("input#cevrilecek").value.length > 70) {
