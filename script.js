@@ -138,6 +138,53 @@ window.addEventListener("load", () => {
             })
             .catch(err => console.error(err));
     }
+    var stopwatchInterval = [null, null, null];
+    const stopwatch = {
+        start: () => {
+            stopwatchInterval[0] = setInterval(() => {
+                document.querySelectorAll("#k-sure span")[2].innerText < 99 ?
+                document.querySelectorAll("#k-sure span")[2].innerText =
+                (parseInt(document.querySelectorAll("#k-sure span")[2].innerText) + 1).toString().padStart(2, "0") :
+                document.querySelectorAll("#k-sure span")[2].innerText = "00";
+            }, 10);
+            stopwatchInterval[1] = setInterval(() => {
+                document.querySelectorAll("#k-sure span")[1].innerText < 59 ?
+                document.querySelectorAll("#k-sure span")[1].innerText =
+                (parseInt(document.querySelectorAll("#k-sure span")[1].innerText) + 1).toString().padStart(2, "0") :
+                document.querySelectorAll("#k-sure span")[1].innerText = "00";
+            }, 1000);
+            stopwatchInterval[2] = setInterval(() => {
+                document.querySelectorAll("#k-sure span")[0].innerText =
+                (parseInt(document.querySelectorAll("#k-sure span")[0].innerText) + 1).toString().padStart(2, "0");
+            }, 60000);
+        },
+        pause: () => {
+            clearInterval(stopwatchInterval[0]);
+            clearInterval(stopwatchInterval[1]);
+            clearInterval(stopwatchInterval[2]);
+        },
+        tour: () => {
+            let newTour = document.createElement("p");
+            newTour.innerHTML =
+            document.querySelectorAll("#k-sure span")[0].innerText + ":" +
+            document.querySelectorAll("#k-sure span")[1].innerText + ":" +
+            document.querySelectorAll("#k-sure span")[2].innerText;
+            document.querySelector("#k-tur-liste").insertAdjacentElement("afterbegin", newTour);
+        },
+        reset: () => {
+            clearInterval(stopwatchInterval[0]);
+            clearInterval(stopwatchInterval[1]);
+            clearInterval(stopwatchInterval[2]);
+            document.querySelectorAll("#k-sure span")[0].innerText = "00";
+            document.querySelectorAll("#k-sure span")[1].innerText = "00";
+            document.querySelectorAll("#k-sure span")[2].innerText = "00";
+            document.querySelector("#k-tur-liste").innerHTML = "";
+        }
+    }
+    document.querySelector("button#baslat").addEventListener("click", () => { stopwatch.start() });
+    document.querySelector("button#durdur").addEventListener("click", () => { stopwatch.pause() });
+    document.querySelector("button#tur").addEventListener("click", () => { stopwatch.tour() });
+    document.querySelector("button#k-sifirla").addEventListener("click", () => { stopwatch.reset() });
     document.querySelector("button#retry").addEventListener("click", () => {
         navigator.geolocation.getCurrentPosition(getTemparature);
     });

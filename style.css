@@ -276,6 +276,10 @@ select:hover {
     top: 75vh;
 }
 
+.topbar .item[active][data-open=kronometre]:not(.const) {
+    top: 87vh;
+}
+
 .topbar .item.hidden:not([active]) {
     display: none;
 }
@@ -347,6 +351,24 @@ a:hover {
     align-items: center;
     cursor: pointer;
     color: white;
+}
+
+#k-sure {
+    font-size: 2rem;
+}
+
+#k-tur-liste {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: .1rem;
+}
+
+#k-tur-liste p {
+    margin-top: 0;
 }
 
 @media screen and (max-width: 1000px) {
