@@ -91,16 +91,16 @@ window.addEventListener("load", () => {
                 console.log(data);
                 document.querySelectorAll("table#hava tr")[0].querySelectorAll("th").forEach((item, index) => {
                     let hrs = new Date().getHours() + (index - 2);
-                    item.setHTML(`${hrs}:00`);
+                    item.innerHTML = (`${hrs}:00`);
                 });
                 document.querySelectorAll("table#hava tr")[1].querySelectorAll("td").forEach((item, index) => {
                     let hrs = new Date().getHours() + (index - 2);
-                    item.setHTML(`${data["hourly"]["temperature_2m"][hrs]}°C`);
+                    item.innerHTML = (`${data["hourly"]["temperature_2m"][hrs]}°C`);
                 });
             });
     }
     const getWord = (word) => {
-        document.querySelector(".sozluk .sonuclar").setHTML("");
+        document.querySelector(".sozluk .sonuclar").innerHTML = ("");
         fetch(`https://sozluk.gov.tr/gts?ara=${word}`)
             .then(res => res.json())
             .then(data => {
@@ -108,14 +108,14 @@ window.addEventListener("load", () => {
                 let anlamlar = data[0]["anlamlarListe"];
                 anlamlar.forEach((item, index) => {
                     let elem = document.createElement("p");
-                    elem.setHTML(`${index + 1}. ${item["anlam"].replaceAll("►", "")}`);
+                    elem.innerHTML = (`${index + 1}. ${item["anlam"].replaceAll("►", "")}`);
                     document.querySelector(".sozluk .sonuclar").appendChild(elem);
                 });
             })
             .catch(error => {
                 console.error(error);
                 document.querySelector(".sozluk .error").style.display = "block";
-                document.querySelector(".sozluk .error").setHTML(`"${word}" kelimesi bulunamadı :(`);
+                document.querySelector(".sozluk .error").innerHTML = (`"${word}" kelimesi bulunamadı :(`);
             });
     }
     const getSalahTimes = (pos) => {
@@ -124,9 +124,9 @@ window.addEventListener("load", () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data["times"][date]);
-                document.querySelector(".namaz-vakti #section-title").setHTML(`${data.place.city} için Bugünkü Namaz Vakitleri`);
+                document.querySelector(".namaz-vakti #section-title").innerHTML = (`${data.place.city} için Bugünkü Namaz Vakitleri`);
                 document.querySelectorAll("table#vakitler td").forEach((item, index) => {
-                    item.setHTML(data["times"][date][index]);
+                    item.innerHTML = (data["times"][date][index]);
                 });
             });
     }
@@ -134,7 +134,7 @@ window.addEventListener("load", () => {
         fetch(`https://api.mymemory.translated.net/get?q=${text}&langpair=${from}|${to}`)
             .then(res => res.json())
             .then(data => {
-                document.querySelector(".cevir .cevrilmis").setHTML(data.responseData.translatedText);
+                document.querySelector(".cevir .cevrilmis").innerHTML = (data.responseData.translatedText);
             })
             .catch(err => console.error(err));
     }
@@ -193,7 +193,7 @@ window.addEventListener("load", () => {
     });
     document.querySelector("button#sifirla").addEventListener("click", () => {
         document.querySelector(".sozluk input").value = "";
-        document.querySelector(".sozluk .sonuclar").setHTML("");
+        document.querySelector(".sozluk .sonuclar").innerHTML = ("");
     });
     document.querySelector(".topbar .item[data-open=hava-durumu]").addEventListener("click", () => {
         navigator.geolocation.getCurrentPosition(getTemparature);
@@ -226,19 +226,19 @@ window.addEventListener("load", () => {
     });
     document.querySelector("#hesap .butonlar button#exec").addEventListener("click", () => {
         const fn = () => { return document.querySelector("#hesap .cikti").innerText.replaceAll(" ", "").replaceAll("×", "*").replaceAll(",", ".").replaceAll("÷", "/").replaceAll(/[A-Za-z]/g, "") };
-        document.querySelector("#hesap .cikti").setHTML(eval(fn()));
+        document.querySelector("#hesap .cikti").innerHTML = (eval(fn()));
         if (document.querySelector("#hesap .cikti").innerText == "undefined") document.querySelector("#hesap .cikti").innerText = "";
     });
     document.querySelector("#hesap .butonlar button#clear").addEventListener("click", () => {
-        document.querySelector("#hesap .cikti").setHTML("");
+        document.querySelector("#hesap .cikti").innerHTML = ("");
     });
     document.querySelector("#hesap .butonlar button#back").addEventListener("click", () => {
-        document.querySelector("#hesap .cikti").setHTML(document.querySelector("#hesap .cikti").innerText.substring(0, document.querySelector("#hesap .cikti").innerText.length - 1));
+        document.querySelector("#hesap .cikti").innerHTML = (document.querySelector("#hesap .cikti").innerText.substring(0, document.querySelector("#hesap .cikti").innerText.length - 1));
     });
     document.querySelectorAll("#hesap .butonlar button:not([data-custom])").forEach(item => {
         if (document.querySelector("#hesap .cikti").innerText === "0") document.querySelector("#hesap .cikti").innerText = "";
         item.addEventListener("click", () => {
-            document.querySelector("#hesap .cikti").setHTML(document.querySelector("#hesap .cikti").innerText + item.innerText);
+            document.querySelector("#hesap .cikti").innerHTML = (document.querySelector("#hesap .cikti").innerText + item.innerText);
         });
     });
     document.querySelector(".topbar .mobile").addEventListener("click", () => {
@@ -254,13 +254,13 @@ window.addEventListener("load", () => {
         document.querySelectorAll(`.esitlik select.${document.querySelector("select#tur").value}`).forEach(item => item.style.display = "block");
     });
     document.querySelector("button#hesapla").addEventListener("click", () => {
-        document.querySelector(".ceviri-sonuc").setHTML(`
+        document.querySelector(".ceviri-sonuc").innerHTML = (`
         ${document.querySelector("input#ilkSayi").value.replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].selectedIndex].innerText} = ${Number((document.querySelector("input#ilkSayi").value * (birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[0].value] / birimler[document.querySelector("select#tur").value][document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].value])).toFixed(3)).toString().replaceAll(".", ",")} ${document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].options[document.querySelectorAll('select.' + document.querySelector("select#tur").value)[1].selectedIndex].innerText}
         `);
     });
     document.querySelector(".cevir button#cevir").addEventListener("click", () => {
         if (document.querySelector("input#cevrilecek").value.length > 70) {
-            document.querySelector(".cevir .cevrilmis").setHTML("Maalesef 70 karakterden uzun metinler çevrilemez!");
+            document.querySelector(".cevir .cevrilmis").innerHTML = ("Maalesef 70 karakterden uzun metinler çevrilemez!");
             return;
         }
         getTranslation(
