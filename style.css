@@ -285,8 +285,8 @@ select:hover {
 }
 
 span.info {
-    position: absolute;
-    bottom: -5rem;
+    position: relative;
+    top: 80%;
     left: 50%;
     transform: translateX(-50%);
     color: gray;
