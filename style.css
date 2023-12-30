@@ -285,10 +285,9 @@ select:hover {
 }
 
 span.info {
-    position: relative;
+    position: absolute;
     left: 50%;
     top: 80%;
-    left: 50%;
     transform: translateX(-50%);
     color: gray;
     width: 100%;
